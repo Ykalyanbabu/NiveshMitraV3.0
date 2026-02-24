@@ -1,0 +1,136 @@
+/* *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f9fbff;
+}
+
+.process-section{
+    padding:80px 20px;
+    text-align:center;
+} */
+
+/* .title{
+    font-size:34px;
+    margin-bottom:80px;
+    color:#5a67d8;
+} */
+
+.zigzag{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    max-width:1250px;
+    margin:auto;
+    position:relative;
+}
+
+/* .zigzag::before{
+    content:"";
+    position:absolute;
+    top:100px;
+    left:0;
+    width:100%;
+    height:4px;
+    background:#cceaf054;
+    z-index:0;
+} */
+
+.item{
+    width:14%;
+    position:relative;
+    z-index:2;
+    transition:0.4s ease;
+}
+
+.item.down{
+    margin-top:70px;
+}
+
+.hex{
+    width:110px;
+    height:63px;
+    background: linear-gradient(135deg, #F6D365, #FDA085);
+    margin:0 auto 35px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:30px;
+    transition:0.4s;
+}
+
+.hex:before,
+.hex:after{
+    content:"";
+    position:absolute;
+    width:0;
+    border-left:55px solid transparent;
+    border-right:55px solid transparent;
+}
+
+.hex:before{
+    bottom:100%;
+    border-bottom:32px solid #f7cc6a;
+}
+
+.hex:after{
+    top:100%;
+    border-top:32px solid #fca780;
+}
+
+.item:hover{
+    transform:translateY(-12px);
+}
+
+.item:hover .hex{
+    transform:scale(1.08);
+}
+
+.item h3{
+    font-size:16px;
+    /* margin-bottom:8px; */
+    color:#6d28d9;
+    text-align: center;
+}
+
+.item p{
+    font-size:14px;
+    color:#555;
+    text-align: center;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+    .zigzag{
+        flex-wrap:wrap;
+        gap:40px;
+        justify-content:center;
+    }
+
+    .zigzag::before{
+        display:none;
+    }
+
+    .item{
+        width:45%;
+        margin-top:0 !important;
+    }
+}
+
+@media(max-width:576px){
+    .item{
+        width:100%;
+    }
+}
+.item:hover .hex {
+    transform: rotate(360deg) scale(1.1);
+}
+
+

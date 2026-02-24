@@ -1,0 +1,146 @@
+
+:root{
+    --color-1:#002b49;
+    --color-2:#ffb400;
+    --color-3:#2d89a0;
+    --color-4:#2bc3cc;
+    --color-5:#ff3b3b;
+    --color-6:#673ab7;
+    --bg-light:#f4f7f6;
+}
+
+/* ===== RESET ===== */
+/* *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:var(--bg-light);
+    padding:50px 20px;
+} */
+
+/* ===== WRAPPER ===== */
+.steps-wrapper{
+    max-width:1400px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    flex-wrap:nowrap;
+}
+
+/* ===== CARD ===== */
+.step-card{
+    position:relative;
+    width:180px;
+    min-height:240px;
+    background:#fff;
+    border-radius:15px;
+    border-left:8px solid transparent;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:60px 15px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transition:.3s ease;
+    overflow:visible;
+}
+
+/* ===== STEP NUMBER ARROW ===== */
+.step-number{
+    position:absolute;
+    top:20px;
+    right:-17px;
+    width:120px;
+    height:45px;
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    clip-path:polygon(0% 0%,85% 0%,100% 50%,85% 100%,0% 100%,15% 50%);
+    box-shadow:5px 5px 15px rgba(0,0,0,.1);
+    transition:.3s ease;
+}
+
+/* ===== ICON ===== */
+.step-icon{
+    font-size:40px;
+    margin-top:40px;
+    margin-bottom:40px;
+    color:#555;
+    transition:.4s ease;
+}
+
+/* ===== TITLE ===== */
+.step-title{
+    margin-top:0px;
+    font-size:16px;
+    text-transform:uppercase;
+    color:#333;
+}
+
+/* ===== COLORS ===== */
+.step-1{border-left-color:var(--color-1);}
+.step-1 .step-number{background:var(--color-1);}
+
+.step-2{border-left-color:var(--color-2);}
+.step-2 .step-number{background:var(--color-2);}
+
+.step-3{border-left-color:var(--color-3);}
+.step-3 .step-number{background:var(--color-3);}
+
+.step-4{border-left-color:var(--color-4);}
+.step-4 .step-number{background:var(--color-4);}
+
+.step-5{border-left-color:var(--color-5);}
+.step-5 .step-number{background:var(--color-5);}
+
+.step-6{border-left-color:var(--color-6);}
+.step-6 .step-number{background:var(--color-6);}
+
+/* ===== HOVER EFFECTS ===== */
+@keyframes glowBlink{
+    0%{filter:brightness(1);box-shadow:0 0 5px transparent;}
+    50%{filter:brightness(1.3);box-shadow:0 0 20px currentColor;}
+    100%{filter:brightness(1);box-shadow:0 0 5px transparent;}
+}
+
+.step-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+
+.step-card:hover .step-number{
+    animation:glowBlink 1s infinite;
+    right:-22px;
+}
+
+.step-card:hover .step-icon{
+    transform:scale(1.2) rotate(10deg);
+    color:#000;
+}
+
+/* ===== BOTTOM BAR ===== */
+.step-card::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    width:40%;
+    height:5px;
+    background:#ddd;
+    border-radius:10px 10px 0 0;
+    transition:.3s ease;
+}
+
+.step-1:hover::after{background:var(--color-1);width:80%;}
+.step-2:hover::after{background:var(--color-2);width:80%;}
+.step-3:hover::after{background:var(--color-3);width:80%;}
+.step-4:hover::after{background:var(--color-4);width:80%;}
+.step-5:hover::after{background:var(--color-5);width:80%;}
+.step-6:hover::after{background:var(--color-6);width:80%;}

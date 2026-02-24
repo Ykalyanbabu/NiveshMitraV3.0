@@ -1,0 +1,197 @@
+
+:root{
+    --bp-bg:#1e263a;
+    --bp-white:#fff;
+
+    --bp1:#6c59b8;
+    --bp2:#3498db;
+    --bp3:#27ae60;
+    --bp4:#f39c12;
+    --bp5:#e74c3c;
+    --bp6:#16a085;
+    --bp7:#ff6084;
+    --bp7d:#d64a6a;
+}
+
+/* body{
+    margin:0;
+    padding:60px 20px;
+    font-family:'Segoe UI',sans-serif;
+    background:var(--bp-bg);
+    display:flex;
+    justify-content:center;
+} */
+
+/* WRAPPER */
+.bp-wrapper{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px 20px;
+    max-width:1100px;
+    width:100%;
+}
+
+/* CARD */
+.bp-card{
+    position:relative;
+    background:var(--bp-white);
+    border-radius:0 35px 0px 35px;
+    padding:20px 15px 20px 25px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+    transition:.3s ease;
+    cursor:pointer;
+}
+
+/* .bp-card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 15px 30px rgba(0,0,0,.35);
+} */
+
+/* STEP TAG */
+.bp-step{
+    position:absolute;
+    top:-12px;
+    left:-12px;
+    color:#fff;
+    font-weight:800;
+    font-size:1.6rem;
+    padding:8px 14px;
+    border-radius:12px 12px 12px 0;
+}
+
+.bp-step::after{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    left:0;
+    border-left:10px solid transparent;
+    border-top:10px solid rgba(0,0,0,.4);
+}
+
+/* ICON */
+.bp-icon{
+    font-size:2.4rem;
+    min-width:50px;
+    margin-right:0px;
+    text-align:center;
+}
+
+/* CONTENT */
+.bp-content h3{
+    margin:0;
+    color:#333;
+    font-size:1.4rem;
+}
+
+.bp-content p{
+    margin:5px 0 0;
+    color:#666;
+    font-size:13px;
+    line-height:1.4;
+}
+
+/* COLORS */
+.bp-c1 .bp-step{background:var(--bp1);}
+.bp-c1 .bp-icon{color:var(--bp1);}
+
+.bp-c2 .bp-step{background:var(--bp2);}
+.bp-c2 .bp-icon{color:var(--bp2);}
+
+.bp-c3 .bp-step{background:var(--bp3);}
+.bp-c3 .bp-icon{color:var(--bp3);}
+
+.bp-c4 .bp-step{background:var(--bp4);}
+.bp-c4 .bp-icon{color:var(--bp4);}
+
+.bp-c5 .bp-step{background:var(--bp5);}
+.bp-c5 .bp-icon{color:var(--bp5);}
+
+.bp-c6 .bp-step{background:var(--bp6);}
+.bp-c6 .bp-icon{color:var(--bp6);}
+
+/* STEP 7 SPECIAL */
+.bp-card.bp-c7{
+    background:#fff;
+}
+.bp-c7 .bp-step{
+    background:var(--bp7d);
+}
+
+.bp-c7 .bp-icon,
+.bp-c7 h3,
+.bp-c7 p{
+    color:#d64a6a;
+}
+
+/* SPACER */
+.bp-space{
+    display:block;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+    .bp-wrapper{
+        grid-template-columns:1fr;
+    }
+    .bp-space{
+        display:none;
+    }
+}
+
+/* Base animation for all cards */
+.bp-card {
+    animation: stepColor 7s linear infinite;
+}
+
+/* Individual delays for each step */
+.bp-card:nth-child(1) { animation-delay: 0s; }
+.bp-card:nth-child(3) { animation-delay: 1s; }
+.bp-card:nth-child(5) { animation-delay: 2s; }
+.bp-card:nth-child(7) { animation-delay: 3s; }
+.bp-card:nth-child(2) { animation-delay: 4s; }
+.bp-card:nth-child(4) { animation-delay: 5s; }
+.bp-card:nth-child(6) { animation-delay: 6s; }
+
+/* Animation keyframes */
+@keyframes stepColor {
+   0% {
+        background: #ffffff;
+        color: #000;
+        box-shadow: none;
+        transform: scale(1);
+    }
+
+    10% {
+        background: linear-gradient(135deg, #f5abcd, #f0cba1);
+        color: #fff; /* 👈 force black text */
+        box-shadow: 0 0 20px rgba(106,17,203,0.6),
+                    0 0 40px rgba(37,117,252,0.5);
+        transform: scale(1.03);
+    }
+
+    20% {
+        background: #ffffff;
+        color: #000;
+        box-shadow: none;
+        transform: scale(1);
+    }
+
+    100% {
+        background: #ffffff;
+        color: #000;
+    }
+}
+
+/* FORCE h3 and p to follow black color */
+.bp-card h3,
+.bp-card p {
+    color: #000;
+    /* transition: color 0.3s ease; */
+}
+
+/* Optional: icon also black */
+.bp-card .bp-icon i {
+    color: inherit;
+}

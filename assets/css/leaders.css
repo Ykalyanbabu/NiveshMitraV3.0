@@ -1,0 +1,91 @@
+
+
+        /* Container for the Flip Cards */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px; /* Essential for 3D effect */
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform var(--transition-speed);
+            transform-style: preserve-3d;
+        }
+
+        /* The Flip Trigger */
+        .flip-card:hover .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back Styling */
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px 20px 0px 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .flip-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-back {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+        }
+
+        .flip-back h4 {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #b33a00; /* Subtle orange tint for headings */
+        }
+
+        .flip-back p {
+            font-size: 10px;
+            line-height: 1.3;
+            color: #0966af;
+            font-weight: 700;
+        }
+
+        /* Sizing variants based on your layout */
+        .flip-card-large { height: 420px; }
+        .flip-card-small { height: 200px; }
+        .flip-card-twosmall { height: 200px; }
+
+        .img-wrapper img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        /* This is the magic part: when you hover the container, rotate the inner div */
+.flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* Ensure the transition is smooth (add this inside your existing .flip-inner block) */
+.flip-inner {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}

@@ -1,0 +1,114 @@
+
+        /* --- General Layout --- */
+        .image-column {
+            flex: 0 0 100%;
+            max-width: 600px;
+            margin:0px auto;
+            padding: 20px;
+            background: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-bottom: 70px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        /* --- Animated Growth Arrow --- */
+        /* .arrow-container {
+            position: absolute;
+            bottom: 65px;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .curved-arrow {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawArrow 4s linear infinite;
+        }
+
+        @keyframes drawArrow {
+            0% { stroke-dashoffset: 1000; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 0; }
+        } */
+
+        /* --- Bar & Medal Styles --- */
+        .bar-box {
+            position: relative;
+            width: 20%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .custom-bar {
+            width: 85%;
+            border-radius: 100px 100px 5px 5px; /* Pill Shape */
+            transform-origin: bottom;
+            animation: growBar 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Medals (Floating Icons) */
+        .custom-value {
+            position: absolute;
+            width: 60px;
+            z-index: 15;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        .custom-value img {
+            width: 100%;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        /* Updated Vibrant Gradients */
+        .c4 { background: linear-gradient(180deg, #00d2ff 0%, #3a7bd5 100%); height: 35%; animation-delay: 0.1s; } 
+        .c5 { background: linear-gradient(180deg, #f2994a 0%, #f2c94c 100%); height: 55%; animation-delay: 0.3s; }
+        .c6 { background: linear-gradient(180deg, #8e2de2 0%, #4a00e0 100%); height: 75%; animation-delay: 0.5s; }
+        .c7 { background: linear-gradient(180deg, #ff0084 0%, #ff4b2b 100%); height: 100%; animation-delay: 0.7s; }
+
+        /* Labels and Dots */
+        .custom-pointer {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            margin-top: 20px;
+            border: 4px solid currentColor;
+        }
+
+        .label {
+            position: absolute;
+            bottom: -35px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #777;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Animations --- */
+        @keyframes growBar {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -15px); }
+        }
