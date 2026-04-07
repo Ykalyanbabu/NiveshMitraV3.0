@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nivesh Mitra V3.0 - Admin</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <!-- prism css -->
+    <link rel="stylesheet" href="assets/css/plugins/prism-coy.css">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/card.css">
+    <link rel="stylesheet" href="assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main css -->
+    <link rel="stylesheet" href="assets/wizards/css/style.css">
+    <link rel="stylesheet" href="assets/css/forest.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </style>
+
+
+ <style>
+    .card-body {
+    /* flex: 1 1 auto; */
+    /* min-height: 1px; */
+    padding: 1.25rem !important;
+}
+        :root {
+            --primary-blue: #1a365d;
+            --success-green: #0d7a5f;
+            --warning-orange: #f59e0b;
+            --danger-red: #ef4444;
+            --operational-lime: #65a30d;
+        }
+
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* --- Stats Grid & Trending 4-Cards --- */
+        .stats-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .stat-card-new {
+            border-radius: 12px;
+            padding: 20px 30px;
+            color: white;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: none;
+        }
+
+        .stat-card-new:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Icon Animation Logic */
+        .stat-card-new i {
+            font-size: 2.8rem;
+            margin-bottom: 0px;
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card-new:hover i {
+            animation: iconBounce 0.8s infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px) scale(1.1); }
+        }
+
+        /* Color Gradients from Image */
+        .bg-proposed { background: linear-gradient(135deg, #0d7a5f, #14b8a6); }
+        .bg-approved { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .bg-construction { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        .bg-operational { background: linear-gradient(135deg, #65a30d, #4d7c0f); }
+
+        .stat-card-new h3 { font-size: 2rem; font-weight: 800; margin: -40px 0px 0px 0px; }
+        .stat-card-new p { font-size: 1rem; font-weight: 500; margin: 5px 0 0; opacity: 0.9; }
+
+        /* --- Map Section --- */
+        .map-section {
+            position: relative;
+            height: 450px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .legend-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; font-weight: 600; }
+        .color-box { width: 14px; height: 14px; border-radius: 50%; }
+
+        /* --- Table Styling --- */
+        .custom-table-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .custom-table thead {
+            background-color: #1a365d;
+            color: #ffffff;
+        }
+
+        .custom-table th { 
+            text-align: center; 
+            padding: 15px; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            letter-spacing: 0.5px;
+        }
+
+        .custom-table td { 
+            text-align: center; 
+            padding: 15px; 
+            vertical-align: middle; 
+            border-bottom: 1px solid #f1f5f9;
+        }
+        table thead tr th {
+    background: #454ca1 !important;
+    color: #fff !important;
+}
+        .status-pill {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .pill-approved { background: #dcfce7; color: #166534; }
+        .pill-progress { background: #fef9c3; color: #854d0e; }
+
+        /* Header Dropdowns Styling */
+        .filter-section select {
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            padding: 8px 12px;
+            width: 100%;
+            background-color: #fff;
+        }
+        .info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #1e3c72;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+    </style>
+</head>
+
+<body>
+
+
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar theme-horizontal menu-light">
+        <div class="navbar-wrapper container-fluid">
+            <div class="navbar-content sidenav-horizontal" id="layout-sidenav">
+                <ul class="nav pcoded-inner-navbar sidenav-inner">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-layout"></i></span><span
+                                class="pcoded-mtext">Administration</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="Search Engine for Request Details.html" target="_blank">Search Engine for Request Details</a></li>
+                           
+                        </ul>
+                    </li>
+                     <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-layout"></i></span><span
+                                class="pcoded-mtext">Super Admin</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="Master Data Updation.html" target="_blank">Master Data Updation</a></li>
+                           <li><a href="Service Master.html" target="_blank">Service Master</a></li>
+                        </ul>
+                    </li>
+                     <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-file-text"></i></span><span
+                                class="pcoded-mtext">Reports</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class="nav-item pcoded-hasmenu"><a href="General Report.html" target="_blank">General Report</a>
+                                <ul class="pcoded-submenu">
+                                    <li><a href="Department wise Status Report – NOC.html" target="_blank">Department wise Status Report – NOC</a></li>
+                                    <li><a href="Department wise Ranking Report Graph.html" target="_blank">Department wise Ranking Report Graph</a></li>
+                                    <li><a href="Department wise Status Report Graph.html" target="_blank">Department wise Status Report Graph</a></li>
+                                    <li><a href="Unit wise Comprehensive Report.html" target="_blank">Unit wise Comprehensive Report</a></li>
+                                    <li><a href="Enterprise wise proposed investment and Employment.html" target="_blank">Enterprise wise proposed investment and Employment</a></li>
+                                    <li><a href="Entrepreneur Lists.html" target="_blank">Entrepreneur Lists</a></li>
+                                </ul>
+                            </li>
+                             <li class="nav-item pcoded-hasmenu"><a href="Fee Related.html" target="_blank">Fee Related</a>
+                                <ul class="pcoded-submenu">
+                                    <li><a href="Department Wise Fee Collection and Remittance.html" target="_blank">Department Wise Fee Collection and Remittance</a></li>
+                                </ul>
+                            </li>
+                             <li class="nav-item pcoded-hasmenu"><a href="Grievances / Complaint / Feedback.html" target="_blank">Grievances / Complaint / Feedback</a>
+                                <ul class="pcoded-submenu">
+                                    <li><a href="Department Wise Grievances Status Report.html" target="_blank">Department Wise Grievances Status Report</a></li>
+                                    <li><a href="General Complaint / Feedback Report.html" target="_blank">General Complaint / Feedback Report</a></li>
+                                    <li><a href="Entrepreneur Wise Service FeedBack Rating Report.html" target="_blank">Entrepreneur Wise Service FeedBack Rating Report</a></li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    
+                    <!-- <li class="nav-item">
+                        <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-file-text"></i></span><span class="pcoded-mtext">View Profile</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i
+                                    class="feather icon-file-text"></i></span><span
+                                class="pcoded-mtext">Settings</span></a>
+                    </li> -->
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="m-header">
+                <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+                <a href="#!" class="b-brand">
+                    <!-- ========   change your logo hear   ============ -->
+                    <img src="assets/images/investup1.png" alt="" class="logo" style="width: 90%;">
+                    <img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
+                </a>
+                <a href="#!" class="mob-toggler">
+                    <i class="feather icon-more-vertical"></i>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse d-none">
+                
+                <ul class="navbar-nav ml-auto">
+                   
+                        <div class="dropdown drp-user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="min-width: 65px !important;">
+                                <i class="feather icon-user"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-notification">
+                                <div class="pro-head">
+                                    <img src="assets/images/user/avatar-1.jpg" class="img-radius"
+                                        alt="User-Profile-Image">
+                                    <span>John Doe</span>
+                                    <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                        <i class="feather icon-log-out"></i>
+                                    </a>
+                                </div>
+                                <ul class="pro-body">
+                                    <li><a href="user-profile.html" class="dropdown-item"><i
+                                                class="feather icon-user"></i>View Profile</a></li>
+                                    <li><a href="email_inbox.html" class="dropdown-item"><i
+                                                class="feather icon-user"></i>Settings</a></li>
+                                    <li><a href="auth-signin.html" class="dropdown-item"><i
+                                                class="feather icon-lock"></i>Log out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper container-fluid">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <div class="page-header">
+                                <div class="page-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <!-- <div class="page-header-title">
+                                       <h5 class="m-b-10">Welcome to Kalyanbabu!</h5>
+                                       </div> -->
+                                            <!-- <ul class="breadcrumb">
+                                       <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                       <li class="breadcrumb-item"><a href="#!">Page Layout</a></li>
+                                       <li class="breadcrumb-item"><a href="#!">Horizontal Layout 2</a></li>
+                                       </ul> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ Main Content ] start -->
+                            <div class="card table-card review-card">
+                                <div class="card-header borderless ">
+                                    <h5>District Investment Monitoring</h5>
+                                    <div class="card-header-right">
+                                        <div class="btn-group card-option">
+                                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="feather icon-more-horizontal"></i>
+                                            </button>
+                                            <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                                <li class="dropdown-item full-card"><a href="#!"><span><i
+                                                                class="feather icon-maximize"></i> maximize</span><span
+                                                            style="display:none"><i class="feather icon-minimize"></i>
+                                                            Restore</span></a></li>
+                                                <li class="dropdown-item minimize-card"><a href="#!"><span><i
+                                                                class="feather icon-minus"></i> collapse</span><span
+                                                            style="display:none"><i class="feather icon-plus"></i>
+                                                            expand</span></a></li>
+                                                <li class="dropdown-item reload-card"><a href="#!"><i
+                                                            class="feather icon-refresh-cw"></i> reload</a></li>
+                                                <li class="dropdown-item close-card"><a href="#!"><i
+                                                            class="feather icon-trash"></i> remove</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="card-body">
+                                    <div class="row g-3 align-items-end" style="display: flex;">
+                                        <!-- Sector -->
+                                        <div class="col-md-2">
+                                            <select class="form-select">
+                                                <option>--Sector--</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <!-- Stage -->
+                                        <div class="col-md-2">
+                                            <!-- <label class="form-label">Select Month:</label> -->
+                                            <select class="form-select">
+                                                <option>--Stage--</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <!-- <label class="form-label">Select Month:</label> -->
+                                            <select class="form-select">
+                                                <option>--Year--</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <!-- <label class="form-label">Select Month:</label> -->
+                                            <select class="form-select">
+                                                <option>--Investment Size--</option>
+                                            </select>
+                                        </div>
+                                
+                                    </div>
+                               
+
+                                <div class="stats-grid-4">
+                                    <div class="stat-card-new bg-proposed">
+                                        <i class="fas fa-file-signature"></i>
+                                        <h3>820</h3>
+                                        <p>Proposed</p>
+                                    </div>
+                                    <div class="stat-card-new bg-approved">
+                                        <i class="fas fa-check-double"></i>
+                                        <h3>540</h3>
+                                        <p>Approved</p>
+                                    </div>
+                                    <div class="stat-card-new bg-construction">
+                                        <i class="fas fa-helmet-safety"></i>
+                                        <h3>360</h3>
+                                        <p>Under Construction</p>
+                                    </div>
+                                    <div class="stat-card-new bg-operational">
+                                        <i class="fas fa-charging-station"></i>
+                                        <h3>625</h3>
+                                        <p>Operational</p>
+                                    </div>
+                                </div>
+
+                                <div class="map-section mt-4">
+                                    <div class="info">
+                                        <h5><strong>Lucknow</strong></h5>
+                                        <p>Projects: 28</p>
+                                        <p>Investment: ₹12,500 Cr</p>
+                                        <p>Sector: IT/Electronics</p>
+                                    </div>
+                                    <!-- <div class="legend-box">
+                                        <div class="legend-item"><span class="color-box" style="background:#0d7a5f"></span> Proposed</div>
+                                        <div class="legend-item"><span class="color-box" style="background:#f59e0b"></span> Approved</div>
+                                        <div class="legend-item"><span class="color-box" style="background:#ef4444"></span> Under Construction</div>
+                                        <div class="legend-item"><span class="color-box" style="background:#65a30d"></span> Operational</div>
+                                    </div> -->
+                                    <iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Uttar%20Pradesh&t=&z=6&ie=UTF8&iwloc=&output=embed"></iframe>
+                                </div>
+
+                                <div class="custom-table-card">
+                                    <table class="table custom-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Investor</th>
+                                                <th>District</th>
+                                                <th>Sector</th>
+                                                <th>Investment (Cr)</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>ABC Corp</strong></td>
+                                                <td>Kanpur</td>
+                                                <td>Manufacturing</td>
+                                                <td class="font-weight-bold text-primary">₹1200 Cr</td>
+                                                <td><span class="status-pill pill-approved">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>XYZ Ltd</strong></td>
+                                                <td>Varanasi</td>
+                                                <td>IT/ITES</td>
+                                                <td class="font-weight-bold text-primary">₹800 Cr</td>
+                                                <td><span class="status-pill pill-progress">In Progress</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>MCC Kiro</strong></td>
+                                                <td>Lucknow</td>
+                                                <td>IT</td>
+                                                <td class="font-weight-bold text-primary">₹800 Cr</td>
+                                                <td><span class="status-pill pill-approved">Approved</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/vendor-all.min.js"></script>
+        <script src="assets/js/plugins/bootstrap.min.js"></script>
+        <script src="assets/js/pcoded.min.js"></script>
+        <!-- prism Js -->
+        <script src="assets/js/plugins/prism.js"></script>
+        <script src="assets/js/horizontal-menu.js"></script>
+        <script>
+            (function () {
+                if ($('#layout-sidenav').hasClass('sidenav-horizontal') || window.layoutHelpers.isSmallScreen()) {
+                    return;
+                }
+                try {
+                    window.layoutHelpers._getSetting("Rtl")
+                    window.layoutHelpers.setCollapsed(
+                        localStorage.getItem('layoutCollapsed') === 'true',
+                        false
+                    );
+                } catch (e) { }
+            })();
+            $(function () {
+                $('#layout-sidenav').each(function () {
+                    new SideNav(this, {
+                        orientation: $(this).hasClass('sidenav-horizontal') ? 'horizontal' : 'vertical'
+                    });
+                });
+                $('body').on('click', '.layout-sidenav-toggle', function (e) {
+                    e.preventDefault();
+                    window.layoutHelpers.toggleCollapsed();
+                    if (!window.layoutHelpers.isSmallScreen()) {
+                        try {
+                            localStorage.setItem('layoutCollapsed', String(window.layoutHelpers.isCollapsed()));
+                        } catch (e) { }
+                    }
+                });
+            });
+            $(document).ready(function () {
+                $("#pcoded").pcodedmenu({
+                    themelayout: 'horizontal',
+                    MenuTrigger: 'hover',
+                    SubMenuTrigger: 'hover',
+                });
+                // Initialize all tooltips
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                });
+            });
+
+        </script>
+        <script src="assets/js/analytics.js"></script>
+        <script src="assets/wizards/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/wizards/js/bootstrap.bundle.js"></script>
+        <script src="assets/wizards/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="assets/wizards/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+        <script src="assets/wizards/vendor/jquery-steps/jquery.steps.min.js"></script>
+        <script src="assets/wizards/js/main.js"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
